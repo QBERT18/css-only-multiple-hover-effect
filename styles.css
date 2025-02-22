@@ -1,0 +1,33 @@
+main,
+.list {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.list {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.list .item {
+  transition: 0.5s;
+  filter: brightness(0);
+}
+
+.list .item:hover {
+  filter: brightness(1);
+  transform: translateZ(200px);
+}
+
+.list .item:hover ~ .item {
+  filter: brightness(var(--brightness));
+  transform: translateZ(var(--translate-z-reverse)) rotateY(var(--rotate-z));
+}
+
+.list .item:has(~ .item:hover) {
+  filter: brightness(var(--brightness-reverse));
+  transform: translateZ(var(--translate-z)) rotateY(var(--rotate-z-reverse));
+}
